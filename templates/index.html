@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedra, Papel e Tesoura</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Pedra, Papel e Tesoura</h1>
+        
+        <div class="scores">
+            <h2>Pontuação:</h2>
+            <p><strong>AI:</strong> {{ pontos['AI'] }}</p>
+            <p><strong>Usuário:</strong> {{ pontos['Usuario'] }}</p>
+        </div>
+
+        {% if resultado %}
+            <div class="resultado">
+                <h2>{{ resultado }}</h2>
+                <p><strong>AI escolheu:</strong> {{ movimento_ai }}</p>
+                <p><strong>Usuário escolheu:</strong> {{ movimento_usuario }}</p>
+            </div>
+        {% endif %}
+
+        <form method="post" class="game-form">
+            <label for="movimento">Escolha sua opção:</label>
+            <select name="movimento" id="movimento" required>
+                <option value="pedra">Pedra</option>
+                <option value="papel">Papel</option>
+                <option value="tesoura">Tesoura</option>
+            </select>
+            <button type="submit" class="btn">Jogar</button>
+        </form>
+    </div>
+</body>
+</html>
+

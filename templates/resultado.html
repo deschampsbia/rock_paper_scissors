@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado Final</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Pontuação Final</h1>
+        
+        <div class="scores">
+            <p><strong>AI:</strong> {{ pontos['AI'] }}</p>
+            <p><strong>Usuário:</strong> {{ pontos['Usuario'] }}</p>
+        </div>
+
+        <h2 class="resultado">
+            {% if pontos['AI'] > pontos['Usuario'] %}
+                AI ganhou!
+            {% elif pontos['AI'] < pontos['Usuario'] %}
+                Usuário ganhou!
+            {% else %}
+                Empate!
+            {% endif %}
+        </h2>
+
+        <a href="/" class="btn">Jogar novamente</a>
+    </div>
+</body>
+</html>
