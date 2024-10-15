@@ -1,15 +1,19 @@
+#importação e inicialização
 from flask import Flask, render_template, request, redirect, url_for
 from random import choice
 
 app = Flask(__name__)
 
+#definição de variáveis
 acoes_permitidas = ['pedra', 'papel', 'tesoura']
 pontos = {'AI': 0, 'Usuario': 0}
 rodadas = 0
 
+#rota principal (/)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     global rodadas
+    #lógica do jogo e processamento de formulário
     if request.method == 'POST':
         movimento_usuario = request.form['movimento']
         movimento_ai = choice(acoes_permitidas)
@@ -28,6 +32,7 @@ def index():
 
         rodadas += 1
 
+        #redirecionamento ou renderização
         if rodadas >= 3:
             return redirect(url_for('resultado'))
 
@@ -35,9 +40,11 @@ def index():
 
     return render_template('index.html', pontos=pontos)
 
+#rota de resultado
 @app.route('/resultado')
 def resultado():
     return render_template('resultado.html', pontos=pontos)
 
+#execução final
 if __name__ == '__main__':
     app.run(debug=True)
